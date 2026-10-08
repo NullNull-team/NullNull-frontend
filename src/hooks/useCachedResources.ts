@@ -7,15 +7,16 @@ export function useCachedResources() {
   useEffect(() => {
     async function loadResourcesAndDataAsync() {
       try {
-        // 모든 폰트 파일 비동기 로드
         await Font.loadAsync({
-          'IBMPlexSansKR-Bold': require('../assets/fonts/IBMPlexSansKR-Bold.ttf'),
-          'IBMPlexSansKR-ExtraLight': require('../assets/fonts/IBMPlexSansKR-ExtraLight.ttf'),
-          'IBMPlexSansKR-Light': require('../assets/fonts/IBMPlexSansKR-Light.ttf'),
-          'IBMPlexSansKR-Medium': require('../assets/fonts/IBMPlexSansKR-Medium.ttf'),
-          'IBMPlexSansKR-Regular': require('../assets/fonts/IBMPlexSansKR-Regular.ttf'),
-          'IBMPlexSansKR-SemiBold': require('../assets/fonts/IBMPlexSansKR-SemiBold.ttf'),
-          'IBMPlexSansKR-Thin': require('../assets/fonts/IBMPlexSansKR-Thin.ttf'),
+          'Pretendard-Thin': require('../assets/fonts/Pretendard-Thin.otf'),
+          'Pretendard-ExtraLight': require('../assets/fonts/Pretendard-ExtraLight.otf'),
+          'Pretendard-Light': require('../assets/fonts/Pretendard-Light.otf'),
+          'Pretendard-Regular': require('../assets/fonts/Pretendard-Regular.otf'),
+          'Pretendard-Medium': require('../assets/fonts/Pretendard-Medium.otf'),
+          'Pretendard-SemiBold': require('../assets/fonts/Pretendard-SemiBold.otf'),
+          'Pretendard-Bold': require('../assets/fonts/Pretendard-Bold.otf'),
+          'Pretendard-ExtraBold': require('../assets/fonts/Pretendard-ExtraBold.otf'),
+          'Pretendard-Black': require('../assets/fonts/Pretendard-Black.otf'),
         });
       } catch (e) {
         console.warn(e);
