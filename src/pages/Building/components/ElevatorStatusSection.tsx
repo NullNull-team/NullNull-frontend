@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
+
 const elevatorData = [
-  { id: 1, name: '메인 엘리베이터', status: '답답', level: 3 },
-  { id: 2, name: '기숙사 엘리베이터', status: '쏘쏘', level: 2 },
+  { id: 1, name: '메인 엘리베이터', status: '쏘쏘', level: 2 },
 ];
 
 const getStatusStyle = (level: number) => {
@@ -23,45 +23,52 @@ const getStatusStyle = (level: number) => {
 
 export default function ElevatorStatusSection() {
   return (
-    <View className="flex-col p-[15px] gap-y-[10px] rounded-[16px] border border-[#D9E0EA] bg-white mx-5 mt-4 mb-6 self-stretch">
+    <View className="flex-col mx-5 mt-4 mb-6 self-stretch">
       
-      {/* 상단 타이틀 영역 */}
-      <View className="flex-row justify-between items-center w-full">
-        <Text className="text-lg font-bold text-gray-900">지금 1층 엘리베이터</Text>
-        <Text className="text-xs text-gray-400">2곳 · 4대</Text>
+      {/* 2. 상단 타이틀 영역 */}
+      <View className="flex-row justify-between items-center w-full mb-3">
+        <Text className="text-[17px] font-bold text-gray-900">지금 1층 엘리베이터</Text>
+        <Text className="text-[13px] text-gray-500">1곳 · 2대</Text>
       </View>
 
-      {elevatorData.map((elevator) => {
-        const styles = getStatusStyle(elevator.level);
+      {/* 3. 엘리베이터 리스트 */}
+      <View className="flex-col gap-y-2.5">
+        {elevatorData.map((elevator) => {
+          const styles = getStatusStyle(elevator.level);
 
-        return (
-          <View 
-            key={elevator.id} 
-            className={`flex-row justify-between items-center w-full h-[48px] px-[14px] rounded-xl ${styles.bg}`}
-          >
-            <View className="flex-row items-center gap-x-[10px]">
-              <View className="flex-row gap-x-1">
-                {[1, 2, 3, 4].map((dot) => (
-                  <View 
-                    key={dot}
-                    className={`w-1.5 h-1.5 rounded-full ${
-                      dot <= elevator.level ? styles.dotActive : styles.dotInactive
-                    }`}
-                  />
-                ))}
+          return (
+            <View 
+              key={elevator.id} 
+              className={`flex-row justify-between items-center w-full h-[48px] px-[14px] rounded-xl ${styles.bg}`}
+            >
+              <View className="flex-row items-center gap-x-3">
+                
+                {/* 상태 표시 도트 */}
+                <View className="flex-row gap-x-1">
+                  {[1, 2, 3, 4].map((dot) => (
+                    <View 
+                      key={dot}
+                      className={`w-1.5 h-1.5 rounded-full ${
+                        dot <= elevator.level ? styles.dotActive : styles.dotInactive
+                      }`}
+                    />
+                  ))}
+                </View>
+
+                {/* 엘리베이터 이름 */}
+                <Text className="text-[15px] font-semibold text-gray-900">
+                  {elevator.name}
+                </Text>
               </View>
 
-              <Text className="text-[15px] font-semibold text-gray-800">
-                {elevator.name}
+              {/* 상태 텍스트 */}
+              <Text className={`text-[15px] font-bold ${styles.text}`}>
+                {elevator.status}
               </Text>
             </View>
-
-            <Text className={`text-[15px] font-bold ${styles.text}`}>
-              {elevator.status}
-            </Text>
-          </View>
-        );
-      })}
+          );
+        })}
+      </View>
     </View>
   );
 }

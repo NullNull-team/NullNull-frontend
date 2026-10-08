@@ -26,23 +26,23 @@ export default function TransitTimeDisplay({ targetFloor = 3 }: TransitTimeDispl
     { 
       id: 1, 
       iconType: 'stairs',
-      name: '좌측 계단', 
+      name: '메인 계단', 
       time: '약 50초', 
       isFaster: true 
     },
     { 
       id: 2, 
       iconType: 'elevator', 
-      name: '기숙사 엘리베이터', 
-      time: '약 1분', 
+      name: '메인 엘리베이터', 
+      time: '약 55초', 
       isFaster: false 
     },
   ];
 
   return (
-    <View className="flex-col items-start p-[15px] self-stretch rounded-[16px] border border-[#D9E0EA] bg-white mx-5 mb-6">
+    <View className="flex-col mx-5 mb-6 self-stretch">
       
-      <Text className="text-[16px] font-bold text-gray-900 mb-3">
+      <Text className="text-[17px] font-bold text-gray-900 mb-3">
         {targetFloor}층까지 걸리는 시간
       </Text>
       
@@ -87,6 +87,8 @@ export default function TransitTimeDisplay({ targetFloor = 3 }: TransitTimeDispl
       <Text className="text-[11px] text-gray-400 mt-3 w-full">
         걸리는 시간은 센서 추정값이라 실제와 조금 다를 수 있어요.
       </Text>
+
+      <View className="h-[1px] bg-gray-200 w-full mt-6" />
 
     </View>
   );

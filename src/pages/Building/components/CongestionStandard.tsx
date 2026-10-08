@@ -30,10 +30,10 @@ export default function CongestionStandard() {
   ];
 
   return (
-    <View className="flex-col p-[15px] gap-y-[12px] rounded-[16px] border border-[#D9E0EA] bg-white mx-5 mb-6">
+    <View className="flex-col mx-5 mb-6 self-stretch">
       
-      <View className="flex-row justify-between items-center w-full mb-1">
-        <Text className="text-[16px] font-bold text-gray-900">혼잡도 기준</Text>
+      <View className="flex-row justify-between items-center w-full mb-3">
+        <Text className="text-[17px] font-bold text-gray-900">혼잡도 기준</Text>
         <Text className="text-[13px] font-bold text-[#8A3C0C]">답답부터 붐빔</Text>
       </View>
 

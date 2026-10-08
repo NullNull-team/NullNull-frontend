@@ -14,7 +14,7 @@ export default function BuildingScreen({ route, navigation }: any) {
 
   return (
     <ScrollView
-      style={{ flex: 1 }}
+      style={{ flex: 1, backgroundColor: '#FFF'}}
       contentContainerStyle={{
         alignItems: 'center',
         paddingTop: 60,
