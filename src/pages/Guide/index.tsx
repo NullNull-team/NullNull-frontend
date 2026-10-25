@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {
   View,
   Text,
@@ -6,7 +7,11 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import BackIcon from '../../assets/icons/back.svg';
+
 export default function GuideScreen() {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -14,8 +19,9 @@ export default function GuideScreen() {
           style={styles.backButton}
           activeOpacity={0.7}
           accessibilityLabel="뒤로"
+          onPress={() => navigation.goBack()}
         >
-          <Text style={styles.backIcon}>‹</Text>
+          <BackIcon width={22} height={22} />
         </TouchableOpacity>
 
         <Text style={styles.title}>안내</Text>
@@ -86,13 +92,6 @@ const styles = StyleSheet.create({
     height: 44,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-
-  backIcon: {
-    color: '#121A26',
-    fontSize: 34,
-    fontWeight: '300',
-    lineHeight: 34,
   },
 
   title: {

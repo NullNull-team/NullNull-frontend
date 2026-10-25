@@ -9,10 +9,22 @@ import {
 import { useNavigation } from '@react-navigation/native';
 
 import BuildingCard from './components/BuildingCard';
+
 import InfoIcon from '../../assets/icons/info.svg';
+import ShieldIcon from '../../assets/icons/shield.svg';
+
+import LiveStatus from '../../assets/status/live.svg';
+import DelayStatus from '../../assets/status/delay.svg';
+import OfflineStatus from '../../assets/status/offline.svg';
+
+import CampusMap from '../../assets/maps/campus-map.svg';
+
+type StatusType = 'live' | 'delay' | 'offline';
 
 export default function HomeScreen() {
   const navigation = useNavigation();
+
+  const [status] = React.useState<StatusType>('live');
 
   return (
     <View style={styles.container}>
@@ -27,14 +39,24 @@ export default function HomeScreen() {
 
         <View style={styles.brand}>
           <Text style={styles.brandTitle}>널널</Text>
+
           <Text style={styles.brandSubtitle}>
             가톨릭대학교 혼잡도
           </Text>
         </View>
 
-        <View style={styles.live}>
-          <View style={styles.liveDot} />
-          <Text style={styles.liveText}>실시간</Text>
+        <View style={styles.statusIcon}>
+          {status === 'live' && (
+            <LiveStatus width={62} height={26} />
+          )}
+
+          {status === 'delay' && (
+            <DelayStatus width={62} height={26} />
+          )}
+
+          {status === 'offline' && (
+            <OfflineStatus width={62} height={26} />
+          )}
         </View>
       </View>
 
@@ -44,9 +66,7 @@ export default function HomeScreen() {
         activeOpacity={0.8}
         onPress={() => navigation.navigate('Guide' as never)}
       >
-        <View style={styles.shieldIcon}>
-          <Text style={styles.shieldCheck}>✓</Text>
-        </View>
+        <ShieldIcon width={18} height={18} />
 
         <Text style={styles.privacyText}>
           개인을 식별하지 않습니다
@@ -67,16 +87,17 @@ export default function HomeScreen() {
       </View>
 
       {/* 캠퍼스 지도 */}
-      <View style={styles.map}>
-        <Text style={styles.mapLabel}>
-          캠퍼스맵 이미지 자리{'\n'}
-          (원본 캠퍼스맵으로 교체)
-        </Text>
-
-        <View style={[styles.mapDot, styles.mapDot1]} />
-        <View style={[styles.mapDot, styles.mapDot2]} />
-        <View style={[styles.mapDot, styles.mapDot3]} />
-      </View>
+      <TouchableOpacity
+        style={styles.map}
+        activeOpacity={0.9}
+        onPress={() => navigation.navigate('Map' as never)}
+      >
+        <CampusMap
+          width="100%"
+          height="100%"
+          preserveAspectRatio="xMidYMid meet"
+        />
+      </TouchableOpacity>
 
       {/* 건물 제목 */}
       <View
@@ -98,7 +119,7 @@ export default function HomeScreen() {
       <View style={styles.buildings}>
         <BuildingCard
           name="김수환관"
-          favorite
+          
         />
 
         <BuildingCard
@@ -209,33 +230,12 @@ const styles = StyleSheet.create({
     lineHeight: 17,
   },
 
-  live: {
+  statusIcon: {
     width: 62,
     height: 26,
     marginLeft: 'auto',
-    paddingHorizontal: 10,
-
-    flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'center',
-    gap: 6,
-
-    borderRadius: 999,
-    backgroundColor: '#DCF0E8',
-  },
-
-  liveDot: {
-    width: 7,
-    height: 7,
-    borderRadius: 3.5,
-    backgroundColor: '#1A9C7E',
-  },
-
-  liveText: {
-    color: '#0B6150',
-    fontSize: 11,
-    fontWeight: '700',
-    lineHeight: 15,
+    alignItems: 'center',
   },
 
   /* 개인정보 안내 */
@@ -243,33 +243,12 @@ const styles = StyleSheet.create({
   privacy: {
     width: 358,
     height: 44,
-
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
-
     paddingHorizontal: 12,
-
     borderRadius: 12,
     backgroundColor: '#E3E9F1',
-  },
-
-  shieldIcon: {
-    width: 18,
-    height: 18,
-
-    justifyContent: 'center',
-    alignItems: 'center',
-
-    borderWidth: 1.5,
-    borderColor: '#56637A',
-    borderRadius: 6,
-  },
-
-  shieldCheck: {
-    color: '#56637A',
-    fontSize: 11,
-    fontWeight: '700',
   },
 
   privacyText: {
@@ -279,12 +258,11 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
 
-  /* section title */
+  /* Section */
 
   sectionHeading: {
     height: 44,
     paddingTop: 15,
-
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
@@ -308,11 +286,9 @@ const styles = StyleSheet.create({
     lineHeight: 17,
   },
 
-  /* 지도 */
+  /* 캠퍼스 지도 */
 
   map: {
-    position: 'relative',
-
     width: 358,
     height: 180,
 
@@ -320,48 +296,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#D9E0EA',
 
-    backgroundColor: '#DDE4EE',
-  },
+    backgroundColor: '#FFFFFF',
 
-  mapLabel: {
-    position: 'absolute',
-    left: 119.5,
-    top: 73,
-
-    width: 118,
-
-    color: '#56637A',
-    fontSize: 12,
-    lineHeight: 17,
-    textAlign: 'center',
-  },
-
-  mapDot: {
-    position: 'absolute',
-
-    width: 14,
-    height: 14,
-
-    borderWidth: 2,
-    borderColor: '#FFFFFF',
-    borderRadius: 7,
-
-    backgroundColor: '#1C3F94',
-  },
-
-  mapDot1: {
-    left: 108,
-    top: 145,
-  },
-
-  mapDot2: {
-    left: 157,
-    top: 111,
-  },
-
-  mapDot3: {
-    left: 134,
-    top: 25,
+    overflow: 'hidden',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   /* 건물 */

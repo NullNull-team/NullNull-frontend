@@ -7,6 +7,7 @@ import SplashScreen from '../pages/Splash';
 import HomeScreen from '../pages/Home';
 import MapScreen from '../pages/Map';
 import BuildingScreen from '../pages/Building';
+import GuideScreen from '../pages/Guide';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ export default function AppNavigator() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Map" component={MapScreen} />
         <Stack.Screen name="Building" component={BuildingScreen} />
+        <Stack.Screen name="Guide" component={GuideScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
