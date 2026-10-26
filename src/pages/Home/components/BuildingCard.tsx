@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import {
   View,
   Text,
@@ -17,10 +19,19 @@ export default function BuildingCard({
   pending = false,
   favorite = false,
 }: BuildingCardProps) {
+  const navigation = useNavigation<NativeStackNavigationProp<{
+    Building: { buildingName: string };
+  }>>();
   const [isFavorite, setIsFavorite] = useState(favorite);
 
   return (
-    <View style={styles.card}>
+    <TouchableOpacity
+      style={styles.card}
+      activeOpacity={0.8}
+      accessibilityRole="button"
+      accessibilityLabel={`${name} 상세 보기`}
+      onPress={() => navigation.navigate('Building', { buildingName: name })}
+    >
       <View style={styles.leftContent}>
         <Text style={pending ? styles.pendingName : styles.name}>
           {name}
@@ -40,7 +51,12 @@ export default function BuildingCard({
         <Text style={styles.chevron}>›</Text>
 
         <TouchableOpacity
-          onPress={() => setIsFavorite((prev) => !prev)}
+          onPress={(event) => {
+            event.stopPropagation();
+            setIsFavorite((prev) => !prev);
+          }}
+          accessibilityRole="button"
+          accessibilityLabel={`${name} 즐겨찾기 ${isFavorite ? '해제' : '추가'}`}
           activeOpacity={0.6}
           style={styles.favoriteButton}
         >
@@ -54,13 +70,13 @@ export default function BuildingCard({
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    width: 358,
+    width: '100%',
     height: 52,
     flexDirection: 'row',
     alignItems: 'center',

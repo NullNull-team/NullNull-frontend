@@ -1,7 +1,7 @@
 // @ts-ignore
 import "./global.css";
 
-import { View, ActivityIndicator } from "react-native";
+import { View, ActivityIndicator, StyleSheet, Platform } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { useCachedResources } from "./src/hooks/useCachedResources";
@@ -17,7 +17,7 @@ export default function App() {
           flex: 1,
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "red",
+          backgroundColor: "#EEF2F7",
         }}
       >
         <ActivityIndicator size="large" color="#3b82f6" />
@@ -27,9 +27,25 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <View style={{ flex: 1, backgroundColor: "red" }}>
-        <AppNavigator />
+      <View style={styles.root}>
+        <View style={styles.screen}>
+          <AppNavigator />
+        </View>
       </View>
     </SafeAreaProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#EEF2F7',
+  },
+  screen: {
+    flex: 1,
+    width: '100%',
+    maxWidth: Platform.OS === 'web' ? 390 : undefined,
+    overflow: 'hidden',
+  },
+});

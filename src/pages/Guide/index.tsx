@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {
   View,
+  ScrollView,
   Text,
   StyleSheet,
   TouchableOpacity,
@@ -13,7 +14,11 @@ export default function GuideScreen() {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
+    >
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
@@ -66,21 +71,19 @@ export default function GuideScreen() {
 
         <Text style={styles.footer}>학술제 프로젝트 · 팀 널널</Text>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: 390,
-    height: 844,
-    overflow: 'hidden',
+    flex: 1,
     backgroundColor: '#EEF2F7',
   },
 
   header: {
     position: 'relative',
-    width: 390,
+    width: '100%',
     height: 64,
   },
 
@@ -112,7 +115,7 @@ const styles = StyleSheet.create({
   },
 
   card: {
-    width: 358,
+    width: '100%',
     padding: 18,
     borderRadius: 16,
     backgroundColor: '#FFFFFF',
@@ -121,15 +124,15 @@ const styles = StyleSheet.create({
   },
 
   measurementCard: {
-    height: 156,
+    minHeight: 156,
   },
 
   privacyCard: {
-    height: 213,
+    minHeight: 213,
   },
 
   accuracyCard: {
-    height: 134,
+    minHeight: 134,
   },
 
   cardTitle: {
