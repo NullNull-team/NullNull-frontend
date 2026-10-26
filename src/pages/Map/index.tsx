@@ -284,8 +284,8 @@ const styles = StyleSheet.create({
 
   container: {
     position: 'relative',
-    width: 390,
-    height: 844,
+    width: '100%',
+    flex: 1,
     overflow: 'hidden',
     backgroundColor: '#FFFFFF',
   },
@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
     left: 16,
     top: 16,
 
-    width: 358,
+    right: 16,
     height: 54,
 
     backgroundColor: '#FFFFFF',
@@ -358,8 +358,8 @@ const styles = StyleSheet.create({
   zoom: {
     position: 'absolute',
 
-    left: 328,
-    top: 583,
+    right: 16,
+    bottom: 170,
 
     width: 46,
     height: 91,
@@ -422,9 +422,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
 
     left: 16,
-    top: 740,
+    bottom: 20,
 
-    width: 358,
+    right: 16,
     height: 84,
 
     paddingHorizontal: 17,

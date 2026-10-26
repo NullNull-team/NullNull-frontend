@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media screen {
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
+  [dir="auto"] {
+    cursor: inherit;
+  }
+
+  input,
+  textarea,
+  [contenteditable="true"] {
+    -webkit-user-select: text;
+    user-select: text;
+    cursor: text;
+  }
+}

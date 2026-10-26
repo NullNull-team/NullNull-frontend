@@ -43,17 +43,16 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    width: 390,
-    height: 844,
+    width: '100%',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
     position: 'relative',
     overflow: 'hidden',
     backgroundColor: '#1C3F94',
   },
 
   logo: {
-    position: 'absolute',
-    left: 147,
-    top: 325,
     width: 96,
     height: 96,
     borderRadius: 26,
@@ -92,9 +91,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    position: 'absolute',
-    left: 153,
-    top: 429,
+    marginTop: 8,
     color: '#FFFFFF',
     fontSize: 48,
     fontWeight: '700',
@@ -102,9 +99,6 @@ const styles = StyleSheet.create({
   },
 
   english: {
-    position: 'absolute',
-    left: 156,
-    top: 484,
     color: '#C9D6F2',
     fontSize: 16,
     fontWeight: '600',
@@ -113,8 +107,9 @@ const styles = StyleSheet.create({
 
   footer: {
     position: 'absolute',
-    left: 141,
-    top: 771,
+    bottom: 55,
+    width: '100%',
+    textAlign: 'center',
     color: '#C9D6F2',
     fontSize: 13,
     fontWeight: '400',

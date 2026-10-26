@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   View,
+  ScrollView,
   Text,
   StyleSheet,
   TouchableOpacity,
@@ -27,7 +28,12 @@ export default function HomeScreen() {
   const [status] = React.useState<StatusType>('live');
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={styles.content}
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
+    >
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.logo}>
@@ -155,18 +161,18 @@ export default function HomeScreen() {
           pending
         />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: 390,
-    height: 844,
+    flex: 1,
+    backgroundColor: '#EEF2F7',
+  },
+  content: {
     paddingHorizontal: 16,
     paddingBottom: 16,
-    overflow: 'hidden',
-    backgroundColor: '#EEF2F7',
   },
 
   /* Header */
@@ -241,7 +247,7 @@ const styles = StyleSheet.create({
   /* 개인정보 안내 */
 
   privacy: {
-    width: 358,
+    width: '100%',
     height: 44,
     flexDirection: 'row',
     alignItems: 'center',
@@ -289,7 +295,7 @@ const styles = StyleSheet.create({
   /* 캠퍼스 지도 */
 
   map: {
-    width: 358,
+    width: '100%',
     height: 180,
 
     borderRadius: 16,
