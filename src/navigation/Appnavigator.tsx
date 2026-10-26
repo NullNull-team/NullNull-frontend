@@ -11,9 +11,22 @@ import BuildingScreen from '../pages/Building';
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
+  const linking = {
+    prefixes: ['http://localhost:8081'],
+    config: {
+      screens: {
+        Splash: 'splash',
+        Home: 'home',
+        Map: 'map',
+        Building: 'BuildingScreen', 
+      },
+    },
+  };
+
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <Stack.Navigator
+        id="AppStack"
         initialRouteName="Splash"
         screenOptions={{
           headerShown: false,
