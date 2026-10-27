@@ -22,7 +22,6 @@ interface PinDetailModalProps {
 }
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
-// 웹에는 네이티브 애니메이션 모듈이 없어서 웹에서만 끔
 const USE_NATIVE_DRIVER = Platform.OS !== 'web';
 
 export default function PinDetailModal({
@@ -32,7 +31,6 @@ export default function PinDetailModal({
   selectedPin,
   onClose,
 }: PinDetailModalProps) {
-  // 닫힘 애니메이션이 끝날 때까지 Modal을 유지하기 위한 상태
   const [mounted, setMounted] = useState(visible);
 
   const backdropOpacity = useRef(new Animated.Value(0)).current;
@@ -80,7 +78,6 @@ export default function PinDetailModal({
       statusBarTranslucent
     >
       <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-        {/* 어두운 배경: 제자리에서 페이드만 됨 */}
         <Animated.View
           style={[
             StyleSheet.absoluteFill,
@@ -88,10 +85,8 @@ export default function PinDetailModal({
           ]}
         />
 
-        {/* 바깥 영역을 누르면 닫힘 */}
         <Pressable style={{ flex: 1 }} onPress={onClose} />
 
-        {/* 바텀시트: 흰 배경 하나 안에 모든 내용이 들어감 */}
         <Animated.View
           style={{
             backgroundColor: '#FFFFFF',

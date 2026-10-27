@@ -1,10 +1,10 @@
 export type MapPin = {
   id: string;
   name: string;
-  sub?: string; // "2대", "1대" 같은 회색 보조 텍스트
+  sub?: string;
   type: 'elevator' | 'stair';
-  x: number; // viewBox 좌표
-  y: number; // viewBox 좌표
+  x: number;
+  y: number;
   labelPosition: 'left' | 'right' | 'below';
 };
 
@@ -18,8 +18,8 @@ export type RouteDummy = {
   id: string;
   type: 'stairs' | 'elevator';
   name: string;
-  seconds: number; // 더미 소요시간(초)
-  status?: '여유' | '쏘쏘' | '빡빡'; // 엘리베이터 혼잡도 더미
+  seconds: number;
+  status?: '여유' | '쏘쏘' | '빡빡';
 };
 
 export const BUILDING_MAP_DATA: Record<string, {
@@ -30,6 +30,7 @@ export const BUILDING_MAP_DATA: Record<string, {
   pins: MapPin[];
   entrances?: MapEntrance[];
   routes: RouteDummy[];
+  floors: number[]; 
 }> = {
   '김수환관': {
     elevatorBadge: '엘리베이터 2곳 · 4대',
@@ -54,6 +55,7 @@ export const BUILDING_MAP_DATA: Record<string, {
       { id: 'k4', type: 'elevator', name: '기숙사 엘리베이터', seconds: 70, status: '여유' },
       { id: 'k5', type: 'elevator', name: '메인 엘리베이터', seconds: 180, status: '쏘쏘' },
     ],
+    floors: [2, 3, 4],
   },
   '마리아관': {
     elevatorBadge: '엘리베이터 1곳 · 2대',
@@ -68,6 +70,7 @@ export const BUILDING_MAP_DATA: Record<string, {
       { id: 'm1', type: 'stairs', name: '메인 계단', seconds: 50 },
       { id: 'm2', type: 'elevator', name: '메인 엘리베이터', seconds: 55, status: '쏘쏘' },
     ],
+    floors: [2, 3, 4],
   },
   '다솔관': {
     elevatorBadge: '엘리베이터 2곳 · 2대',
@@ -91,6 +94,7 @@ export const BUILDING_MAP_DATA: Record<string, {
       { id: 'd4', type: 'elevator', name: '화물용 엘리베이터', seconds: 85, status: '쏘쏘' },
       { id: 'd5', type: 'elevator', name: '우측 엘리베이터', seconds: 325, status: '빡빡' },
     ],
+    floors: [2, 3, 4, 5, 6, 7],
   },
 };
 
