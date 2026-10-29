@@ -1,9 +1,13 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
+import { useNavigation } from '@react-navigation/native';
+import Text from '../../../components/Text';
 
 interface TransitTimeDisplayProps {
   targetFloor?: number;
+  buildingName?: string;
+  fromFloor?: number;
 }
 
 const StairsIcon = () => (
@@ -21,7 +25,8 @@ const ElevatorIcon = () => (
 );
 
 export default function TransitTimeDisplay({ targetFloor = 3 }: TransitTimeDisplayProps) {
-  
+  const navigation = useNavigation<any>();
+
   const mockRoutes = [
     { 
       id: 1, 
@@ -42,7 +47,17 @@ export default function TransitTimeDisplay({ targetFloor = 3 }: TransitTimeDispl
   return (
     <View className="flex-col mx-5 mb-6 self-stretch">
       
-      <Text className="text-[17px] font-bold text-gray-900 mb-3">
+      <Text 
+        style={{
+          color: '#121A26',
+          fontFamily: 'Pretendard',
+          fontSize: 16,
+          fontStyle: 'normal',
+          fontWeight: '700',
+          lineHeight: 23,
+        }}
+        className="mb-3"
+      >
         {targetFloor}층까지 걸리는 시간
       </Text>
       
@@ -71,7 +86,18 @@ export default function TransitTimeDisplay({ targetFloor = 3 }: TransitTimeDispl
 
             <View>
               <Text className="text-[13px] text-gray-500 mb-[2px]">{route.name}</Text>
-              <Text className="text-[18px] font-bold text-gray-900">{route.time}</Text>
+              <Text 
+                style={{
+                  color: '#121A26',
+                  fontFamily: 'Pretendard',
+                  fontSize: 26,
+                  fontStyle: 'normal',
+                  fontWeight: '700',
+                  lineHeight: 34,
+                }}
+              >
+                {route.time}
+              </Text>
             </View>
           </View>
         ))}
@@ -80,6 +106,7 @@ export default function TransitTimeDisplay({ targetFloor = 3 }: TransitTimeDispl
       <TouchableOpacity 
         className="w-full h-[44px] justify-center items-center rounded-[11px] border border-[#1C3F94] mt-4"
         activeOpacity={0.7}
+        onPress={() => navigation.navigate('AllRoutes')}
       >
         <Text className="text-[15px] font-bold text-[#1C3F94]">모든 경로 보기 {'>'}</Text>
       </TouchableOpacity>

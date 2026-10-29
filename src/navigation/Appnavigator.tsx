@@ -8,6 +8,7 @@ import HomeScreen from '../pages/Home';
 import MapScreen from '../pages/Map';
 import BuildingScreen from '../pages/Building';
 import GuideScreen from '../pages/Guide';
+import AllRoutesScreen from '../pages/Building/AllRoutes';
 
 const Stack = createNativeStackNavigator();
 
@@ -41,7 +42,9 @@ export default function AppNavigator() {
         <Stack.Screen name="Map" component={MapScreen} />
         <Stack.Screen name="Building" component={BuildingScreen} />
         <Stack.Screen name="Guide" component={GuideScreen} />
+
+        <Stack.Screen name="AllRoutes" component={AllRoutesScreen} />
       </Stack.Navigator>
-    </NavigationContainer>
+    </NavigationContainer> 
   );
 }

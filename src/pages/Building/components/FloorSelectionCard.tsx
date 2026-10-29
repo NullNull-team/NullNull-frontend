@@ -1,18 +1,38 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
+import Text from '../../../components/Text';
+import { BUILDING_MAP_DATA } from '../../../data/buildingMapData';
 
 interface FloorSelectionCardProps {
   selectedFloor: number;
   setSelectedFloor: (floor: number) => void;
+  buildingName?: string;
 }
 
-export default function FloorSelectionCard({ selectedFloor, setSelectedFloor }: FloorSelectionCardProps) {
-  const floors = [2, 3, 4];
+export default function FloorSelectionCard({
+  selectedFloor,
+  setSelectedFloor,
+  buildingName = '김수환관',
+}: FloorSelectionCardProps) {
+  const floors =
+    BUILDING_MAP_DATA[buildingName]?.floors ?? BUILDING_MAP_DATA['김수환관'].floors;
 
   return (
     <View className="flex-col mx-5 mb-6 self-stretch">
       
-      <Text className="text-[17px] font-bold text-gray-900 mb-3">몇 층 가세요?</Text>
+      <Text 
+        style={{
+          color: '#121A26',
+          fontFamily: 'Pretendard',
+          fontSize: 15,
+          fontStyle: 'normal',
+          fontWeight: '700',
+          lineHeight: 19,
+        }}
+        className="mb-3"
+      >
+        몇 층 가세요?
+      </Text>
 
       <View className="flex-row gap-x-2 w-full">
         {floors.map((floor) => {
